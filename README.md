@@ -85,3 +85,28 @@ useDebugValue
 -basically like a console.log for your custom hook
 
 useDebugValue('lol hi omg); anythign we put to the Debug value is going to show in ReactDevTools
+
+===============================================================================
+CSS and React
+Styled Components and Emotions
+Both style-components and emotion are libraries that execute in the JavaScript layer. They bring your CSS into your JavaScript. This allows you all the power of JavaScript to manipulate styles using JavaScript.
+
+Tailwind however is a different approach to this. And it bears mentioning that Tailwind isn't tied to React at all (whereas styled-components is and emotion mostly is.) Everything I'm showing you here is just incidentally using React (though Tailwind is particularly popular amongst React devs.)
+
+===============================================================
+How to Set Up TAIL WIND Css,
+
+1. npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat@2.0.3 postcss@7.0.35 autoprefixer@9.8.6 @tailwindcss/postcss7-compat@2.0.3
+Under the hood, Parcel processes all your CSS with PostCSS with the autoprefixer plugin. This works like Babel: it means you can write modern code and it'll make it backwards compatible with older browsers
+
+in package.json "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3" 
+So anytime we say require tailwindcss we are going to get this package tailwindcss/postcss7-compat@^2.0.3 that is what alias means there
+
+2. npx tailwindcss init : inside of your Node modules directory, there is a .bin folder. There is a bunch of available binaries that your packages install for you
+
+In VS code css.lint.unknown in setting to go away for underline tailwind import in style.css
+
+3. To style.css we put
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
