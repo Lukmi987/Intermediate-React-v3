@@ -37,7 +37,7 @@ const SearchParams = () => {
           requestPets();
         }}
       >
-        <label htmlFor="location" classname="search-label">
+        <label htmlFor="location" className="search-label">
           Location
           <input
             id="location"
@@ -47,7 +47,7 @@ const SearchParams = () => {
             onChange={(e) => updateLocation(e.target.value)}
           />
         </label>
-        <label htmlFor="animal" classname="search-label">
+        <label htmlFor="animal" className="search-label">
           Animal
           <select
             id="animal"
@@ -64,12 +64,12 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="breed" classname="search-label">
+        <label htmlFor="breed" className="search-label">
           Breed
           <select
             disabled={!breeds.length}
             id="breed"
-            className="search-control"
+            className="search-control disabled:opacity-50"
             value={breed}
             onChange={(e) => updateBreed(e.target.value)}
             onBlur={(e) => updateBreed(e.target.value)}
@@ -82,7 +82,7 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="theme" classname="search-label">
+        <label htmlFor="theme" className="search-label">
           Theme
           <select
             value={theme}
@@ -96,7 +96,7 @@ const SearchParams = () => {
             <option value="mediumorchid">Medium Orchid</option>
           </select>
         </label>
-        <button className="search-control" style={{ backgroundColor: theme }}>Submit</button>
+        <button className="rounded px-6 py-2 text-white hover:opacity-50 border-none bg-red-400" >Submit</button>
       </form>
       <Results pets={pets} />
     </div>
