@@ -110,3 +110,12 @@ In VS code css.lint.unknown in setting to go away for underline tailwind import 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+4. create .postcssrc file inside:
+{
+  "plugins": {
+    "autoprefixer": {},
+    "tailwindcss": {}
+  }
+}
+

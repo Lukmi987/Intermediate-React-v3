@@ -16,7 +16,8 @@
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/preset-env": "7.13.5",
     "@babel/preset-react": "7.12.13",
-    "@tailwindcss/postcss7-compat": "^2.0.3",
+    "@tailwindcss/forms": "^0.2.1",
+    "@tailwindcss/postcss7-compat": "2.0.3",
     "autoprefixer": "^9.8.6",
     "eslint": "7.18.0",
     "eslint-config-prettier": "8.1.0",
@@ -27,9 +28,10 @@
     "parcel": "1.12.3",
     "postcss": "^7.0.35",
     "prettier": "2.2.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.0.3"
   },
   "dependencies": {
+    "qs": "^6.10.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-router-dom": "5.2.0"

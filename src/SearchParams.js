@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import ThemeContext from "./ThemeContext";
 import useBreedList from "./useBreedList";
 import Results from "./Results";
-
+import * as qs from 'qs'
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
@@ -26,27 +26,32 @@ const SearchParams = () => {
     setPets(json.pets);
   }
 
+
   return (
-    <div className="search-params">
+    <div className="my-0 mx-auto w-11/12">
       <form
+          className="p-10 mb-10 rounded-lg bg-gray-200 shadow-lg flex flex-col items-center divide-y divide-gray-900"
+
         onSubmit={(e) => {
           e.preventDefault();
           requestPets();
         }}
       >
-        <label htmlFor="location">
+        <label htmlFor="location" classname="search-label">
           Location
           <input
             id="location"
+            className="search-control"
             value={location}
             placeholder="Location"
             onChange={(e) => updateLocation(e.target.value)}
           />
         </label>
-        <label htmlFor="animal">
+        <label htmlFor="animal" classname="search-label">
           Animal
           <select
             id="animal"
+            className="search-control"
             value={animal}
             onChange={(e) => updateAnimal(e.target.value)}
             onBlur={(e) => updateAnimal(e.target.value)}
@@ -59,11 +64,12 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="breed">
+        <label htmlFor="breed" classname="search-label">
           Breed
           <select
             disabled={!breeds.length}
             id="breed"
+            className="search-control"
             value={breed}
             onChange={(e) => updateBreed(e.target.value)}
             onBlur={(e) => updateBreed(e.target.value)}
@@ -76,10 +82,11 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <label htmlFor="theme">
+        <label htmlFor="theme" classname="search-label">
           Theme
           <select
             value={theme}
+            className="search-control"
             onChange={(e) => setTheme(e.target.value)}
             onBlur={(e) => setTheme(e.target.value)}
           >
@@ -89,7 +96,7 @@ const SearchParams = () => {
             <option value="mediumorchid">Medium Orchid</option>
           </select>
         </label>
-        <button style={{ backgroundColor: theme }}>Submit</button>
+        <button className="search-control" style={{ backgroundColor: theme }}>Submit</button>
       </form>
       <Results pets={pets} />
     </div>
