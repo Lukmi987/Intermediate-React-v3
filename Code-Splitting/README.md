@@ -4,3 +4,11 @@ For this application Code-Splitting is a bad idea coz we are going to create mor
 
 
 - Do not use moment library too enormous, instead use date fns or temporals
+
+example:
+import {lazy} from 'react'
+
+const Modal = lazy(()=> import("./Modal"))
+
+Does the lazy loading work outside of parcel , Does this work in Webpack , does this work in esbuild
+- just esbuild does not workq
