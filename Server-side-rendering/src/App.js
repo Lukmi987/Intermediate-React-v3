@@ -1,4 +1,4 @@
-import React, { useState, StrictMode } from "react";
+import { useState, StrictMode } from "react";
 import { Route, Switch, Link } from "react-router-dom";
 import Details from "./Details";
 import SearchParams from "./SearchParams";

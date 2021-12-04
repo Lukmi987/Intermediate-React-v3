@@ -1,3 +1,4 @@
+import React from 'react-dom'
 import { hydrate } from "react-dom"; /// I am expecting complete mark up please take complete mark up
 import { BrowserRouter } from "react-router-dom";
 import App from './App';
@@ -7,5 +8,6 @@ import App from './App';
 hydrate(
     <BrowserRouter>
         <App />
-    </BrowserRouter>
+    </BrowserRouter>,
+    document.getElementById("root")
 )
