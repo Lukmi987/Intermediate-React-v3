@@ -12,3 +12,5 @@ TypeScript is a thin layer on top of JavaScript that adds the power of a static 
 In order to install these types, run npm install -D @types/react@17.0.2 @types/react-dom@17.0.1 @types/react-router-dom@5.1.7. This will grab all these type definitions.
 
 npm i -D @types/react@17.0.2 @types/react-dom@17.0.1 @types/react-router-dom@5.1.7
+
+4. When converting js app to to typescript start with components with the least import and move your way up
