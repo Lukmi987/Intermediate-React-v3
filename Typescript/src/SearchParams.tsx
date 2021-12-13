@@ -2,26 +2,21 @@ import React, { useState, useEffect, useContext } from "react";
 import useBreedList from "./useBreedList";
 import Results from "./Results";
 import ThemeContext from "./ThemeContext";
+import { PetAPIResponse, Animal, Pet } from "./APIResponseTypes";
+import { RouteComponentProps } from "react-router-dom";
 
-//Warning: You provided a `value` prop to a form field without an `onChange` handler.
-// Keep in Mind How React Works: Every time React detects a change anywhere, it reruns its render cycle
-// Now When i write a key to input a react is gonna kick rerender cycle, the component will rerender with the same state
-// With the location prop
+const ANIMALS: Animal[] = ["bird", "cat", "dog", "rabbit", "reptile"];
 
-// to be triple secure freeze will make it read only
-const ANIMALS = Object.freeze(["bird", "cat", "dog", "rabbit", "reptile"]);
-
-const SearchParams = () => {
-  const [location, setLocation] = useState("Seattle,WA");
-  const [animal, setAnimal] = useState("dog");
+const SearchParams: React.FC = () => {
+  const [location, setLocation] = useState("Seattle,WA" as Animal);
+  const [animal, setAnimal] = useState("dog" as Animal);
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
   const [breedList, status] = useBreedList(animal);
   const [theme] = useContext(ThemeContext);
 
   useEffect(() => {
-    console.log("useEffect runs agian");
-    requestPets();
+    void requestPets();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   //creating inside of the render, coz now we have a closure where I can access all useStates
@@ -29,7 +24,7 @@ const SearchParams = () => {
     const res = await fetch(
       `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
     );
-    const json = await res.json();
+    const json = (await res.json() as PetAPIResponse);
     const { pets } = json;
     setPets(pets);
   }
@@ -49,7 +44,7 @@ const SearchParams = () => {
           location
           <input
             id="location"
-            onChange={(e) => setLocation(e.target.value)}
+            onChange={(e) => setLocation(e.target.value as any)}
             value={location}
             placeholder="Location"
           />
@@ -59,8 +54,8 @@ const SearchParams = () => {
           <select
             id="animal"
             value={animal}
-            onChange={(e) => setAnimal(e.target.value)}
-            onBlur={(e) => setAnimal(e.target.value)}
+            onChange={(e) => setAnimal(e.target.value as Animal)}
+            onBlur={(e) => setAnimal(e.target.value as Animal)}
           >
             <option />
             {ANIMALS.map((animal) => {

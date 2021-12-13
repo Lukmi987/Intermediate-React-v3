@@ -15,9 +15,6 @@ const Modal: FunctionComponent = ({ children }) => {
     if(!modalRoot || !elRef.current) {
       return;
     }
-    if(elRef.current){
-
-    }
     modalRoot.appendChild(elRef.current);
     return () => {  
       if(elRef.current){ 

@@ -1,7 +1,8 @@
 import React from "react";
 import Pet from "./Pet";
+import {  Pet as PetProps } from "./APIResponseTypes";
 
-const Results = ({ pets }) => {
+const Results: React.FC<{pets: PetProps[]}> = ({pets}) => {
   return (
     <div className="search">
       {!pets.length ? (
@@ -15,12 +16,6 @@ const Results = ({ pets }) => {
             breed={pet.breed}
             id={pet.id}
           />
-          // this would also work but not a good idea, but hard to hear, only work if the props in the pet are named the same as in map keys
-          // Anyway don't do that hard to work with this
-          // <Pet
-          // {...pet}
-          // key={pet.id}
-          // />
         ))
       )}
     </div>
