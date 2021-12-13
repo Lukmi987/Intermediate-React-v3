@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import Modal from "./Modal";
 import ThemeContext from "./ThemeContext";
 
+
 const Details = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isShowModal, setIsShowModal] = useState(false);
 
   const toggleModal = () => setIsShowModal(!isShowModal);
-  const adopt = () => (window.location = "http://bit.ly/pet-adopt");
+  const adopt = () => (window.location.href = "http://bit.ly/pet-adopt");
+
+const state = {
+loading: true,
+}
 
   return (
     <div>

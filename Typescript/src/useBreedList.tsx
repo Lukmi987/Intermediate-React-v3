@@ -1,25 +1,23 @@
 import { useState, useEffect } from "react";
+import { Animal, BreedListAPIResponse } from './APIResponseTypes';
 
-//if the rasa is not gonna have changed, I do not need to re-request it, I am just store it locally,
-const localCache = {};
+const localCache: {[index: string]: string[]} = {};
+
+type Status = "unloaded" | "loading" | "loaded";
 
 //Anytime animal changes we are gonna get a new BreedList from Api
-export default function useBreedList(animal) {
+export default function useBreedList(animal: Animal): [string[], Status] {
   const [breedList, setBreedList] = useState([]);
-  const [status, setStatus] = useState("unloaded");
+  const [status, setStatus] = useState<Status>("unloaded" as Status);
   console.log("v hook");
-  // When does this effect runs : animal is the thing that we reference from outside of it, so every time we
-  // get new animal back from the user run the effect
+ 
   useEffect(() => {
-    console.log("jsem v useEffectu v hooku");
     if (!animal) {
       setBreedList([]);
     } else if (localCache[animal]) {
-      // if i have already requested previous time
       setBreedList(localCache[animal]);
     } else {
-      // otherwise go to API and go get it for me !!!
-      requestBreedList();
+     void requestBreedList(); // void to ignore returned promise
     }
     async function requestBreedList() {
       setBreedList([]);
@@ -27,7 +25,7 @@ export default function useBreedList(animal) {
       const res = await fetch(
         `http://pets-v2.dev-apis.com/breeds?animal=${animal}`
       );
-      const json = await res.json();
+      const json = (await res.json() as BreedListAPIResponse);
       localCache[animal] = json.breeds || [];
       setBreedList(localCache[animal]);
       setStatus("loaded");
