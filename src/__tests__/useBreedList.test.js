@@ -5,25 +5,47 @@ import { StaticRouter } from "react-router-dom";
 import useBreedList from "../useBreedList";
 import { renderHook } from "@testing-library/react-hooks"
 
-function getBreedList(animal) {
-let list;
+
+// function getBreedList(animal) {
+// let list;
     
-function TestComponent () {
-        list = useBreedList(animal);
-        return null;
-    }
+// function TestComponent () {
+//         list = useBreedList(animal);
+//         return null;
+//     }
 
-    render(<TestComponent />)
-    return list;
-}
+//     render(<TestComponent />)
+//     return list;
+// }
 
 
 
-test("display breedlist according animal", async () => {
-   const [breedList, status] =  getBreedList();
-
+test("display emtpy breedList", async () => {
+   const { result } =  renderHook( () => useBreedList());
+    const [ breedList, status] = result.current;
+    
     expect(breedList).toHaveLength(0);
     expect(status).toBe("unloaded");
-
-    console.log('breed',breedList);
 })
+
+    test("gives back breeds with an animal", async () => {
+        const breeds = [
+            "Havanese",
+            "Bichon Frise",
+            "Poodle",
+            "Corgie"
+        ];
+        fetch.mockResponseOnce(JSON.stringify({
+            animal: "dog",
+            breeds
+        }))
+
+        const {result , waitForNextUpdate} = renderHook(() => useBreedList("dog"))
+
+        // wait for that update and then we can test it
+        await waitForNextUpdate();
+
+        const [breedList, status] = result.current;
+        expect(status).toBe("loaded");
+        expect(breedList).toEqual(breeds);
+    })
